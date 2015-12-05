@@ -1,3 +1,7 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
+<% if (session.getAttribute("user") != null)
+	response.sendRedirect("/index.jsp");
+%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,18 +10,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+    <link rel="shortcut icon" href="/favicon.ico">
 
-    <title>Signin Template for Bootstrap</title>
+    <title>Login to ElMap</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="css/login.css" rel="stylesheet">
-
-    <!-- Just for debugging purposes. Don't actually copy this line! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -30,10 +31,10 @@
 
     <div class="container">
 
-      <form class="form-signin" role="form" action="index.html">
+      <form class="form-signin" role="form" action="/credcheck.jsp" method="post">
         <h2 class="form-signin-heading">Авторизация</h2>
-        <input type="text" class="form-control" placeholder="Введите логин" required autofocus>
-        <input type="password" class="form-control" placeholder="Введите пароль" required>
+        <input type="text" class="form-control" name="user" placeholder="Введите логин" required autofocus>
+        <input type="password" class="form-control" name="password" placeholder="Введите пароль" required>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Войти</button>
       </form>
 

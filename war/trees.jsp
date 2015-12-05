@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,18 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+    <link rel="shortcut icon" href="/favicon.ico">
 
-    <title>Signin Template for Bootstrap</title>
+    <title>ElMap</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="css/style.css" rel="stylesheet">
-
-    <!-- Just for debugging purposes. Don't actually copy this line! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -38,25 +36,64 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				  </button>
-				  <a class="navbar-brand" href="#">Brand</a>
+				  <a class="navbar-brand">ElMap</a>
 				</div>
 
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				  <ul class="nav navbar-nav">
-					<li class="active"><a href="#">Главная <span class="sr-only">(current)</span></a></li>
-					<li><a href="#" data-toggle="modal" data-target="#myModal">Новое дерево</a></li>
-					<li><a href="trees.html">Список зарегистрированных деревьев</a></li>
+					<li><a href="/index.jsp">Главная</a></li>
+					<li class="active"><a>Список зарегистрированных деревьев</a></li>
+					<!-- <li><a href="#" data-toggle="modal" data-target="#myModal">Новое дерево</a></li> -->
+				  </ul>
+				 <ul class="nav navbar-nav navbar-right">
+				 	<li><a>Привет, <%= session.getAttribute("user") %></a></li>
+				 	<li><a href="logout.jsp">Выйти</a></li>
 				  </ul>
 				</div><!-- /.navbar-collapse -->
 			  </div><!-- /.container-fluid -->
 			</nav>
 		</div>
 
-	<div id="map" class="container-fluid">
-	
+	<div class="container">
+		<table class="table table-striped">
+			<tr>
+				<th>#</th>
+				<th>Координаты дерева</th>
+				<th>Тип дерева</th>
+				<th>Радиус дерева</th>
+				<th>Статус</th>
+				<th>Степень</th>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>59.9144 30.3152</td>
+				<td>Дуб</td>
+				<td>1.2 м</td>
+				<td>Больное</td>
+				<td>25%</td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>59.9144 30.3152</td>
+				<td>Ель</td>
+				<td>1.2 м</td>
+				<td>Больное</td>
+				<td>30%</td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>59.9144 30.3152</td>
+				<td>Ясень</td>
+				<td>1 м</td>
+				<td>Больное</td>
+				<td>55%</td>
+			</tr>
+		</table>
+
 	</div>
-	
+
+
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		  <div class="modal-dialog">
 			<div class="modal-content">
@@ -77,7 +114,7 @@
 					<div class="form-group">
 						<label for="exampleInputEmail1">Радиус</label>
 						<input type="number" class="form-control" id="" placeholder="Введите радиус в метрах">
-					</div>					
+					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Статус</label>
 						<select class="form-control">
@@ -88,8 +125,8 @@
 					<div class="form-group">
 						<label for="exampleInputEmail1">Степень</label>
 						<input type="number" class="form-control" id="" placeholder="Введите значение в процентах">
-					</div>	
-					
+					</div>
+
 				</form>
 			  </div>
 			  <div class="modal-footer">
@@ -99,64 +136,12 @@
 			</div>
 		  </div>
 		</div>
-	
+
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
 	<script src="js/jquery-1.11.3.min.js" type="text/javascript"></script>
-	<script src="http://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
 	<script src="js/bootstrap.min.js" type="text/javascript"></script>
-	<script>
 
-			
-			ymaps.ready(init);
-var myMap;
-
-function init () {
-    myMap = new ymaps.Map("map", {
-        center: [59.9144, 30.3152], // СПБ
-        zoom: 11
-    }, {
-        balloonMaxWidth: 200,
-        searchControlProvider: 'yandex#search'
-    });
-
-    // Обработка события, возникающего при щелчке
-    // левой кнопкой мыши в любой точке карты.
-    // При возникновении такого события откроем балун.
-    myMap.events.add('click', function (e) {
-        if (!myMap.balloon.isOpen()) {
-            var coords = e.get('coords');
-            myMap.balloon.open(coords, {
-                contentHeader:'Событие!',
-                contentBody:
-                    '<p>Координаты дерева: ' + [
-                    coords[0].toPrecision(6),
-                    coords[1].toPrecision(6)
-                    ].join(', ') + '</p>',
-                contentFooter:'<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Новое дерево</button>'
-            });
-        }
-        else {
-            myMap.balloon.close();
-        }
-    });
-
-    // Обработка события, возникающего при щелчке
-    // правой кнопки мыши в любой точке карты.
-    // При возникновении такого события покажем всплывающую подсказку
-    // в точке щелчка.
-    myMap.events.add('contextmenu', function (e) {
-        myMap.hint.open(e.get('coords'), 'Кто-то щелкнул правой кнопкой');
-    });
-    
-    // Скрываем хинт при открытии балуна.
-    myMap.events.add('balloonopen', function (e) {
-        myMap.hint.close();
-    });
-}
-			
-			  
-	</script>
   </body>
  </html>
