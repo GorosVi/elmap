@@ -2,6 +2,13 @@ ymaps.ready(init);
 var myMap;
 var latitude, longitude;
 function init () {
+	$("#map").css("position","relative");
+	$("#map").css("top","-20px");  
+	$("#map").css("margin-bottom","-25px");
+	$(window).resize(function() {
+		$("#map").css("height", $(window).height()-52);
+		});
+	
 		myMap = new ymaps.Map("map", {
 				center: [59.9144, 30.3152], // СПБ
 				zoom: 11
@@ -86,6 +93,7 @@ function init () {
 
 	        }, 'json');
 		});	
+		
 		
 		
 }
