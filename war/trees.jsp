@@ -1,4 +1,5 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8" 
+%>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -56,7 +57,8 @@
 		</div>
 
 	<div class="container">
-		<table class="table table-striped">
+		<table class="table table-striped tableTrees">
+			<thead>
 			<tr>
 				<th>#</th>
 				<th>Координаты дерева</th>
@@ -65,6 +67,8 @@
 				<th>Статус</th>
 				<th>Степень</th>
 			</tr>
+			</thead>
+			<tbody>
 			<tr>
 				<td>1</td>
 				<td>59.9144 30.3152</td>
@@ -89,6 +93,7 @@
 				<td>Больное</td>
 				<td>55%</td>
 			</tr>
+			</tbody>
 		</table>
 
 	</div>
@@ -139,6 +144,24 @@
 
 	<script src="js/jquery-1.11.3.min.js" type="text/javascript"></script>
 	<script src="js/bootstrap.min.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			 $.get("/gettrees", function(response){
+				 if(response.success){
+					 $(".tableTrees tbody").html("");
+					 response.trees.forEach(function(item, i, arr) {
+						  var row = "<tr><td>"+(i+1)+"</td><td>"+ 
+						  item.latitude +" "+ item.longitude + "</td><td>"+
+						  item.type + "</td><td>"+
+						  item.radius + "</td><td>" + 
+						  item.status + "</td><td>" + 
+						  item.power + " %</td></tr>";
+						  $(".tableTrees tbody").append(row);						  
+					 }); 
+				 }		            
+		        }, 'json');			
+		});
+	</script>
 
 	</body>
 </html>

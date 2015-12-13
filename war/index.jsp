@@ -70,7 +70,7 @@
 				<form>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Тип дерева</label>
-						<select class="form-control">
+						<select class="form-control" id="treeType">
 							<option>Дуб</option>
 							<option>Ясень</option>
 							<option>Ель</option>
@@ -78,84 +78,33 @@
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Радиус</label>
-						<input type="number" class="form-control" id="" placeholder="Введите радиус в метрах">
+						<input type="number" class="form-control" id="radius" placeholder="Введите радиус в метрах">
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Статус</label>
-						<select class="form-control">
+						<select class="form-control" id="status">
 							<option>Здоровое</option>
 							<option>Зараженное</option>
 						</select>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Степень</label>
-						<input type="number" class="form-control" id="" placeholder="Введите значение в процентах">
+						<input type="number" class="form-control" id="power" placeholder="Введите значение в процентах">
 					</div>
 
 				</form>
 				</div>
 				<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
-				<button type="button" class="btn btn-primary">Сохранить изменения</button>
+				<button type="button" class="btn btn-primary" id="addTree">Сохранить изменения</button>
 				</div>
 			</div>
 			</div>
-		</div>
+		</div> 
 
 	<script src="js/jquery-1.11.3.min.js" type="text/javascript"></script>
 	<script src="http://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
 	<script src="js/bootstrap.min.js" type="text/javascript"></script>
-	<script>
-
-
-			ymaps.ready(init);
-var myMap;
-
-function init () {
-		myMap = new ymaps.Map("map", {
-				center: [59.9144, 30.3152], // СПБ
-				zoom: 11
-		}, {
-				balloonMaxWidth: 200,
-				searchControlProvider: 'yandex#search'
-		});
-
-		// Обработка события, возникающего при щелчке
-		// левой кнопкой мыши в любой точке карты.
-		// При возникновении такого события откроем балун.
-		myMap.events.add('click', function (e) {
-				if (!myMap.balloon.isOpen()) {
-						var coords = e.get('coords');
-						myMap.balloon.open(coords, {
-								contentHeader:'Событие!',
-								contentBody:
-										'<p>Координаты дерева: ' + [
-										coords[0].toPrecision(6),
-										coords[1].toPrecision(6)
-										].join(', ') + '</p>',
-								contentFooter:'<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Новое дерево</button>'
-						});
-				}
-				else {
-						myMap.balloon.close();
-				}
-		});
-
-		// Обработка события, возникающего при щелчке
-		// правой кнопки мыши в любой точке карты.
-		// При возникновении такого события покажем всплывающую подсказку
-		// в точке щелчка.
-		myMap.events.add('contextmenu', function (e) {
-				myMap.hint.open(e.get('coords'), 'Кто-то щелкнул правой кнопкой');
-		});
-
-		// Скрываем хинт при открытии балуна.
-		myMap.events.add('balloonopen', function (e) {
-				myMap.hint.close();
-		});
-}
-
-
-	</script>
+	<script src="js/index.js" type="text/javascript"></script>
 	</body>
 </html>
