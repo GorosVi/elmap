@@ -66,6 +66,7 @@
 				<th>Радиус дерева</th>
 				<th>Статус</th>
 				<th>Степень</th>
+				<th></th>
 			</tr>
 			</thead>
 			<tbody>
@@ -155,8 +156,15 @@
 						  item.type + "</td><td>"+
 						  item.radius + "</td><td>" + 
 						  item.status + "</td><td>" + 
-						  item.power + " %</td></tr>";
-						  $(".tableTrees tbody").append(row);						  
+						  item.power + ' %</td><td><button data="'+item.key+'" class="btn btn-danger dropdown-toggle remove">Удалить</button></td>' + 
+						  "</tr>";
+						  $(".tableTrees tbody").append(row);
+						  
+						  $(".remove").click(function(){
+							  $.get("/remove?id="+$(this).attr("data"), function(response){
+								  
+							  });							 
+						  });
 					 }); 
 				 }		            
 		        }, 'json');			

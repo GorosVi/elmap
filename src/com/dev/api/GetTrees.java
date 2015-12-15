@@ -37,15 +37,17 @@ public class GetTrees extends HttpServlet {
 		// Use PreparedQuery interface to retrieve results
 		PreparedQuery pq = Tree.ds.prepare(q);
 		JSONArray ar = new JSONArray();
-		JSONObject obj = new JSONObject();
+		
 		for (Entity result : pq.asIterable()) {
 			try {
+				JSONObject obj = new JSONObject();
 				obj.put("latitude", (String) result.getProperty("latitude"));
 				obj.put("longitude", (String) result.getProperty("longitude"));
 				obj.put("type", (String) result.getProperty("type"));
 				obj.put("radius", (String) result.getProperty("radius"));
 				obj.put("status", (String) result.getProperty("status"));
 				obj.put("power", (String) result.getProperty("power"));
+				obj.put("key", result.getKey().getId());
 				ar.put(obj);
 				
 			} catch (JSONException e) {
