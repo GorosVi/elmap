@@ -23,8 +23,8 @@ public class Tree extends HttpServlet {
 	public static DatastoreService ds=DatastoreServiceFactory.getDatastoreService();
 	
 public static boolean createTree(String id, String latitude, String longitude, String type, String radius, String status, String power) {
-		Entity tree = new Entity ("Tree", id);
-		tree.setProperty("id", id);
+		Entity tree = new Entity ("Tree");
+		//tree.setProperty("id", id);
 		tree.setProperty("latitude", latitude);
 		tree.setProperty("longitude", longitude);
 		tree.setProperty("type", type);
