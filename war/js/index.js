@@ -96,7 +96,13 @@ function init () {
 		
 }
 $(document).ready(function(){
-	
-	
+	$('#status').change(function(){
+		if($(this).val()=="Без признаков поражения"){
+			$("#powerArea").css( "display", "none" );
+		}else{
+			$("#powerArea").css( "display", "block" );
+		}
+			
+	});
 });
 

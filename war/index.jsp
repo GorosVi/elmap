@@ -71,9 +71,7 @@
 					<div class="form-group">
 						<label for="exampleInputEmail1">Тип дерева</label>
 						<select class="form-control" id="treeType">
-							<option>Дуб</option>
-							<option>Ясень</option>
-							<option>Ель</option>
+							<option>Вяз</option>
 						</select>
 					</div>
 					<div class="form-group">
@@ -83,17 +81,19 @@
 					<div class="form-group">
 						<label for="exampleInputEmail1">Статус</label>
 						<select class="form-control" id="status">
-							<option>Здоровое</option>
-							<option>Зараженное</option>
+							<option>Без признаков поражения</option>
+							<option>Возникающий очаг</option>
+							<option>Действующий очаг</option>
+							<option>Затухающий очаг</option>							
 						</select>
 					</div>
-					<div class="form-group">
-						<label for="exampleInputEmail1">Степень</label>
+					<div class="form-group" id="powerArea"> 
+						<label for="exampleInputEmail1">Степень поражения</label>
 						<input type="number" class="form-control" id="power" placeholder="Введите значение в процентах">
 					</div>
 
 				</form>
-				</div>
+				</div> 
 				<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
 				<button type="button" class="btn btn-primary" id="addTree">Сохранить изменения</button>
