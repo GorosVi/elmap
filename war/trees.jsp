@@ -160,11 +160,15 @@
 						  "</tr>";
 						  $(".tableTrees tbody").append(row);
 						  
-						  $(".remove").click(function(){
-							  $.get("/remove?id="+$(this).attr("data"), function(response){
-								  
-							  });							 
+						  							 
 						  });
+					 $(".remove").click(function(){
+						  var row = this;
+						  $.get("/remove?id="+$(this).attr("data"), function(response){
+							  if(response.success){
+								  $(row).parent().parent().remove();
+							  }
+						  }, 'json');
 					 }); 
 				 }		            
 		        }, 'json');			

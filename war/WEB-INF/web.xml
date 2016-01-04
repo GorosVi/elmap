@@ -50,6 +50,15 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	</servlet-mapping>
 	
 	<servlet>
+		<servlet-name>DeleteTree</servlet-name>
+		<servlet-class>com.dev.api.DeleteTree</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DeleteTree</servlet-name>
+		<url-pattern>/remove</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 		<servlet-name>GetTrees</servlet-name>
 		<servlet-class>com.dev.api.GetTrees</servlet-class>
 	</servlet>

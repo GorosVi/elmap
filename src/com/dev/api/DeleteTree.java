@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.labs.repackaged.org.json.JSONException;
 import com.google.appengine.labs.repackaged.org.json.JSONObject;
 
@@ -24,12 +25,14 @@ public class DeleteTree extends HttpServlet {
 	private final String userID = "admin";
 	private final String password = "admin";
 	
-	protected void doPost(HttpServletRequest request,
+	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		String key = request.getParameter("key");
+		String id = request.getParameter("id");
 		JSONObject  json = new JSONObject();
+		Tree.ds.delete(KeyFactory.createKey("Tree", Long.parseLong(id)));
 		try { 
 			json.put("success", true);
+			json.put("key_id", id);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
