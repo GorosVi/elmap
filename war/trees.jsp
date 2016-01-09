@@ -1,5 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" 
-%>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -48,8 +47,8 @@
 					<!-- <li><a href="#" data-toggle="modal" data-target="#myModal">Новое дерево</a></li> -->
 					</ul>
 				 <ul class="nav navbar-nav navbar-right">
-					<li><a>Привет, <%= session.getAttribute("user") %></a></li>
-					<li><a href="logout.jsp">Выйти</a></li>
+					<li><a>Привет, <%= session.getAttribute("username") %></a></li>
+					<li><a href="/logout.jsp">Выйти</a></li>
 					</ul>
 				</div><!-- /.navbar-collapse -->
 				</div><!-- /.container-fluid -->
